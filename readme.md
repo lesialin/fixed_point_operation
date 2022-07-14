@@ -1,6 +1,6 @@
 # Fixed-Point Operation
 
-This repo is for 8 bits fixed point operation, the function include:
+This repo is for fixed point operation, the function include:
 
 - fixed to float conversion
 - float to fixed point convertion
