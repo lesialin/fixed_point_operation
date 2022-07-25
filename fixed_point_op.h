@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-
-#define ROUND_OFF(x, bits) (x + (1 << (bits - 1))) >> bits
+#define ROUND(x, bits) (x >> bits)
+#define ROUND_OFF(x, bits) ((x + (1 << (bits - 1))) >> bits)
 #define MSB_BIT(x, bits) x >> (bits - 1)
 #define TWOSCOMP(x, bits) (((~x) + 1) & ((1 << bits) - 1))
 #define MASK_BIT(x, bits) (x & ((1 << bits) - 1))

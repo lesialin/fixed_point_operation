@@ -36,11 +36,11 @@ float fixed_to_float(fixed_t input)
     {
         uint32_t tmp;
         tmp = TWOSCOMP(input.value, input.fixed_bits);
-        output = -(float)ROUND(tmp, input.fraction_bits);
+        output = -(float)tmp/(1<<input.fraction_bits);
     }
     else
     {
-        output = (float)ROUND(input.value, input.fraction_bits);
+        output = (float)input.value/(1<<input.fraction_bits);
     }
 
     return output;
@@ -61,7 +61,7 @@ fixed_t fixed_add(fixed_t fixed_a, fixed_t fixed_b)
     tmp_value_b = fixed_b.value << (fraction_bits - fixed_b.fraction_bits);
     tmp_fixed_a_bits = fixed_a.fixed_bits + (fraction_bits - fixed_a.fraction_bits);
     tmp_fixed_b_bits = fixed_b.fixed_bits + (fraction_bits - fixed_b.fraction_bits);
-    tmp_fixed_a_bits > tmp_fixed_b_bits ? fixed_bits = tmp_fixed_a_bits : fixed_bits = tmp_fixed_b_bits;
+    fixed_bits = tmp_fixed_a_bits > tmp_fixed_b_bits ? tmp_fixed_a_bits :tmp_fixed_b_bits;
 
     // add 1 bit to avoid overflow
     fixed_bits += 1;
